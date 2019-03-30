@@ -1,5 +1,5 @@
 ### Quantiacs Trend Following Trading System Example
-# import necessary Packages below:
+# import necessary Packages below:   s
 import numpy as np
 
 def rebalance(pos,newTop3,newBot3,settings):
