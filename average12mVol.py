@@ -3,29 +3,22 @@
 import numpy as np
 
 def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, settings):
-    ''' Go long 3 currencies with strongest 12 month momentum against USD and
-    go short 3 currencies with lowest 12 month momentum against USD. 
-    Cash not used as margin invest on overnight rates. Rebalance monthly.'''
+
     period = int(365/2)
-    #find top vol over period of 12 year and return corresponding market
+    #find top vol over period of 1/2 year and return corresponding market
     
     nMarkets = len(settings['markets'])
     pos = np.zeros((1, nMarkets), dtype=np.float)
-    
-    # if volume of that market is the top 3, long it 
+
     latestVol = VOL[-period:, :]
-    #find average volume over 12 mth per market
-    aveVol = np.mean(latestVol,axis=0) # list of nMaekts with average over prev 365 days 
+    #find average volume over 6 mth per market
+    aveVol = np.mean(latestVol,axis=0) # list of nMaekts with average over prev days 
     
-    #find average volume over 12 mth per market s
-    aveVol = np.mean(latestVol,axis=0) # list of nMaekts with average over prev 365 days 
+    #find average volume over 6 mth per market s
+    aveVol = np.mean(latestVol,axis=0) # list of nMaekts with average over prev days 
     longE = np.where(aveVol == np.nanmax(aveVol))
     shortE = np.where(aveVol == np.nanmin(aveVol))
-        
-#        
-#    latestVol = VOL[-1:,:] #latest volume for all market [2D Matrix]
-#    longE = numpy.where(latestVol[0] == numpy.nanmax(latestVol)) #get index of highest market
-#    shortE = numpy.where(latestVol[0] == numpy.nanmin(latestVol))
+
     pos[0,longE[0]] = 1
     pos[0,shortE[0]] = -1
     
