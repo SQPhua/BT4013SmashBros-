@@ -27,19 +27,16 @@ def rebalance(pos,newTop3,newBot3,settings):
     return weights, pos
 
 def myTradingSystem(DATE, OPEN, HIGH, LOW, CLOSE, VOL, settings):
-    ''' Go long 3 currencies with strongest 12 month momentum against USD and
-    go short 3 currencies with lowest 12 month momentum against USD. 
-    Cash not used as margin invest on overnight rates. Rebalance DAILY.'''
     period = int(365/2)
-    #find top vol over period of 12 year and return corresponding market
+    #find top vol over period of 1/2 year and return corresponding market
     
     nMarkets = len(settings['markets'])
     pos = np.zeros((1, nMarkets), dtype=np.float)
     
     # if volume of that market is the top 3, long it 
     latestVol = VOL[-period:, :]
-    #find average volume over 12 mth per market
-    aveVol = np.mean(latestVol,axis=0) # list of nMaekts with average over prev 365 days 
+    #find average volume over 6 mth per market
+    aveVol = np.mean(latestVol,axis=0) # list of nMaekts with average over prev days 
     newTop3 = aveVol.argsort()[-3:][::-1]
     newBot3 = aveVol.argsort()[:3]
     
@@ -61,6 +58,10 @@ def mySettings():
     settings['lookback'] = 504
     settings['budget'] = 10**6
     settings['slippage'] = 0.05
+	settings['beginInSample'] = '20170119'
+    settings['endInSample']   = '20190331' #testing date
+    #settings['beginInSample'] = '20161019'
+    #settings['endInSample']   = '20181231' 
 
     return settings
 
