@@ -110,8 +110,11 @@ def mySettings():
     settings['lookback'] = 504
     settings['budget'] = 10**6
     settings['slippage'] = 0.05
-    settings['beginInSample'] = '20170112'
-    settings['endInSample'] = '20190331'
+    settings['beginInSample'] = '20170119'
+    settings['endInSample']   = '20190331' #testing date
+    #settings['beginInSample'] = '20161019'
+    #settings['endInSample']   = '20181231' 
+
 
     return settings
 
