@@ -65,9 +65,12 @@ def mySettings():
             'F_HP','F_LR','F_LQ','F_ND','F_NY','F_PQ','F_RR','F_RF','F_RP',
             'F_RY','F_SH','F_SX','F_TR','F_EB','F_VF','F_VT','F_VW','F_GD','F_F']
 
-
+    
     settings['beginInSample'] = '20170119'
-    settings['endInSample']   = '20190331'
+    settings['endInSample']   = '20190331' #testing date
+    #settings['beginInSample'] = '20161019'
+    #settings['endInSample']   = '20181231' 
+
 
     settings['lookback']= 504
     settings['budget']= 10**6
